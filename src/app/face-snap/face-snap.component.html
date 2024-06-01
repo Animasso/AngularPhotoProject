@@ -7,11 +7,15 @@
   </head>
   <body>
     <div class="face-snap-card">
-      <h2>{{ title }}</h2>
-      <p>Mis en ligne le {{ createdAt }}</p>
-      <p>{{ description }}</p>
-      <p>🤌 {{ snaps }}</p>
-      <img [src]="imageUrl" [alt]="title" />
+      <h2>{{ faceSnap.title }}</h2>
+      <p>Mis en ligne le {{ faceSnap.createdAt }}</p>
+      <p>{{ faceSnap.description }}</p>
+      <p>🤌 {{ faceSnap.snaps }}</p>
+      <p>
+        <button (click)="onSnap()">{{ snapTitle }}</button>
+        🤌 {{ faceSnap.snaps }}
+      </p>
+      <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title" />
     </div>
   </body>
 </html>
