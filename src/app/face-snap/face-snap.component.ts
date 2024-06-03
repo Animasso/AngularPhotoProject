@@ -1,15 +1,16 @@
+import { CommonModule, NgStyle } from '@angular/common';
 import { FaceSnap } from './../models/face-snap';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-face-snap',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './face-snap.component.html',
   styleUrl: './face-snap.component.scss',
 })
 export class FaceSnapComponent implements OnInit {
-  @Input() faceSnap!: FaceSnap;
+  @Input() facesnap!: FaceSnap;
 
   title!: string;
   description!: string;
@@ -31,12 +32,12 @@ export class FaceSnapComponent implements OnInit {
     }
   }
   unSnap() {
-    this.faceSnap.removeSnap();
+    this.facesnap.removeSnap();
     this.snapTitle = 'Oh Snap!';
     this.snapClicked = false;
   }
   snap() {
-    this.faceSnap.addSnap();
+    this.facesnap.addSnap();
     this.snapTitle = 'Oops unSnap!';
     this.snapClicked = true;
   }

@@ -10,30 +10,35 @@ import { FaceSnap } from './models/face-snap';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
+  faceSnaps!: FaceSnap[];
   mySnap!: FaceSnap;
   mySecondSnap!: FaceSnap;
   myThridSnap!: FaceSnap;
   ngOnInit(): void {
-    this.mySnap = new FaceSnap(
-      'Archibold',
-      'Mon meilleur ami depuis toujours !',
-      'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg',
-      new Date(),
-      5
-    );
-    this.mySecondSnap = new FaceSnap(
-      'ArchiTwo',
-      'Mon second meilleur ami depuis toujours !',
-      'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg',
-      new Date(),
-      9
-    );
-    this.myThridSnap = new FaceSnap(
-      'ArchiThree',
-      'Mon troisième meilleur ami depuis toujours !',
-      'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg',
-      new Date(),
-      12
-    );
+    this.faceSnaps = [
+      new FaceSnap(
+        'Archibold',
+        'Mon meilleur ami depuis toujours !',
+        'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg',
+        new Date(),
+        100
+      ),
+      new FaceSnap(
+        'ArchiTwo',
+        'Mon second meilleur ami depuis toujours !',
+        'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg',
+        new Date(),
+        72
+      ),
+      new FaceSnap(
+        'ArchiThree',
+        'Mon troisième meilleur ami depuis toujours !',
+        'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg',
+        new Date(),
+        50
+      ),
+    ];
+
+    this.faceSnaps[1].setlocation('Dans les ténébres');
   }
 }

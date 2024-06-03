@@ -1,0 +1,9 @@
+{
+  "htmlhint.documentSelector": ["html", "htm"],
+  "htmlhint.options": {
+    "tagname-lowercase": false,
+    "attr-lowercase": false,
+    "attr-value-double-quotes": true,
+    "doctype-first": true
+  }
+}
