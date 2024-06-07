@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { FaceSnap } from './../models/face-snap';
+import { FaceSnap } from '../models/face-snap';
 import { Component, Input, OnInit } from '@angular/core';
 import { FaceSnapsService } from '../../services/face-snaps.service';
 
 @Component({
-  selector: 'app-face-snap',
+  selector: 'app-single-face-snap',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './face-snap.component.html',
-  styleUrl: './face-snap.component.scss',
+  templateUrl: './single-face-snap.component.html',
+  styleUrl: './single-face-snap.component.scss',
 })
-export class FaceSnapComponent implements OnInit {
+export class SingleFaceSnapComponent implements OnInit {
   @Input() facesnap!: FaceSnap;
 
   snapClicked!: boolean;
