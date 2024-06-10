@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { FaceSnap } from './../models/face-snap';
-import { Component, Input, OnInit } from '@angular/core';
-import { FaceSnapsService } from '../../services/face-snaps.service';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-face-snap',
@@ -10,31 +10,10 @@ import { FaceSnapsService } from '../../services/face-snaps.service';
   templateUrl: './face-snap.component.html',
   styleUrl: './face-snap.component.scss',
 })
-export class FaceSnapComponent implements OnInit {
+export class FaceSnapComponent {
+  constructor(private router: Router) {}
+  onViewFaceSnap() {
+    this.router.navigateByUrl(`facesnaps/${this.facesnap.id}`);
+  }
   @Input() facesnap!: FaceSnap;
-
-  snapClicked!: boolean;
-  snapTitle!: string;
-  constructor(private faceSnapsService: FaceSnapsService) {}
-  ngOnInit(): void {
-    this.snapClicked = false;
-    this.snapTitle = 'Oh Snap!';
-  }
-  onSnap() {
-    if (this.snapClicked) {
-      this.unSnap();
-    } else {
-      this.snap();
-    }
-  }
-  unSnap() {
-    this.faceSnapsService.snapFaceById(this.facesnap.id, 'unsnap');
-    this.snapTitle = 'Oh Snap!';
-    this.snapClicked = false;
-  }
-  snap() {
-    this.faceSnapsService.snapFaceById(this.facesnap.id, 'snap');
-    this.snapTitle = 'Oops unSnap!';
-    this.snapClicked = true;
-  }
 }

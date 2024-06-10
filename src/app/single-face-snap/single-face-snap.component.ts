@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { FaceSnap } from '../models/face-snap';
 import { Component, Input, OnInit } from '@angular/core';
 import { FaceSnapsService } from '../../services/face-snaps.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-single-face-snap',
@@ -11,15 +12,18 @@ import { FaceSnapsService } from '../../services/face-snaps.service';
   styleUrl: './single-face-snap.component.scss',
 })
 export class SingleFaceSnapComponent implements OnInit {
-  @Input() facesnap!: FaceSnap;
-
+  faceSnap!: FaceSnap;
   snapClicked!: boolean;
   snapTitle!: string;
-  constructor(private faceSnapsService: FaceSnapsService) {}
+  constructor(
+    private faceSnapsService: FaceSnapsService,
+    private route: ActivatedRoute
+  ) {}
   ngOnInit(): void {
-    this.snapClicked = false;
-    this.snapTitle = 'Oh Snap!';
+    this.prepareInterfaces();
+    this.getFaceSnaps();
   }
+
   onSnap() {
     if (this.snapClicked) {
       this.unSnap();
@@ -28,13 +32,21 @@ export class SingleFaceSnapComponent implements OnInit {
     }
   }
   unSnap() {
-    this.faceSnapsService.snapFaceById(this.facesnap.id, 'unsnap');
+    this.faceSnapsService.snapFaceById(this.faceSnap.id, 'unsnap');
     this.snapTitle = 'Oh Snap!';
     this.snapClicked = false;
   }
   snap() {
-    this.faceSnapsService.snapFaceById(this.facesnap.id, 'snap');
+    this.faceSnapsService.snapFaceById(this.faceSnap.id, 'snap');
     this.snapTitle = 'Oops unSnap!';
     this.snapClicked = true;
+  }
+  private prepareInterfaces() {
+    this.snapClicked = false;
+    this.snapTitle = 'Oh Snap!';
+  }
+  private getFaceSnaps() {
+    const faceSnapId = this.route.snapshot.params['id'];
+    this.faceSnap = this.faceSnapsService.getFaceSnapById(faceSnapId);
   }
 }

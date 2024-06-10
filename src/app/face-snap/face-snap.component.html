@@ -6,26 +6,9 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="face-snap-card" [ngClass]="{ snapped: snapClicked }">
+    <div class="face-snap-card">
       <h2>{{ facesnap.title | titlecase }}</h2>
-      @if (facesnap.location) {
-      <p>Localisation: {{ facesnap.location }}</p>
-      }@else {
-      <p>Localisation non spécifiée</p>
-      }
-      <p>
-        Mis en ligne le
-        {{ facesnap.createdAt | date : "à HH:mm, le d MMMM yyyy" }}
-      </p>
-      <p>{{ facesnap.description }}</p>
-      <button (click)="onSnap()">{{ snapTitle }}</button>
-      <span
-        [ngStyle]="{ color: 'rgb(0,' + facesnap.snaps + ',0)' }"
-        class="number-snap"
-        >🤌 {{ facesnap.snaps }}</span
-      >
-
-      <img [src]="facesnap.imageUrl" [alt]="facesnap.title" />
+      <button (click)="onViewFaceSnap()">View the SnapFace</button>
     </div>
   </body>
 </html>
